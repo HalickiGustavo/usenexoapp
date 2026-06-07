@@ -80,6 +80,7 @@ function Header() {
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#recursos" className="transition hover:text-foreground">Recursos</a>
           <a href="#para-quem" className="transition hover:text-foreground">Para quem é</a>
+          <a href="#precos" className="transition hover:text-foreground">Preços</a>
           <a href="#como-funciona" className="transition hover:text-foreground">Como funciona</a>
           <a href="#faq" className="transition hover:text-foreground">FAQ</a>
         </nav>
