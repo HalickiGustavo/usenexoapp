@@ -39,6 +39,7 @@ export const Route = createFileRoute("/")({
 function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <TopBanner />
       <Header />
       <main>
         <Hero />
@@ -51,6 +52,20 @@ function LandingPage() {
         <FinalCTA />
       </main>
       <Footer />
+    </div>
+  );
+}
+
+function TopBanner() {
+  return (
+    <div className="relative z-50 border-b border-primary/20 bg-gradient-brand">
+      <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs font-medium text-primary-foreground sm:text-sm">
+        <Sparkles className="h-3.5 w-3.5 flex-shrink-0" />
+        <span>
+          <strong>100% grátis</strong> para proprietários e imobiliárias — pague apenas a{" "}
+          <strong>Taxa de Gestão Digital da Locação</strong>, já inclusa no boleto do inquilino.
+        </span>
+      </div>
     </div>
   );
 }
@@ -99,46 +114,40 @@ function Header() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
-      <div className="pointer-events-none absolute left-1/2 top-20 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px] animate-pulse-glow" />
+      <div className="pointer-events-none absolute left-1/2 top-32 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-32 text-center">
-        <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface px-4 py-1.5 text-xs font-medium text-muted-foreground">
-          <Sparkles className="h-3.5 w-3.5 text-primary-glow" />
-          100% gratuito para proprietários e imobiliárias
-        </div>
-
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+      <div className="relative mx-auto max-w-5xl px-6 pt-24 pb-28 text-center">
+        <h1 className="mx-auto max-w-3xl font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl">
           A gestão dos seus{" "}
           <span className="text-gradient">aluguéis</span>,
           <br />
-          finalmente em um só app.
+          em um só lugar.
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          O Nexo conecta proprietários, imobiliárias e inquilinos em uma única plataforma.
-          Contratos, cobranças, repasses e comunicação — tudo no seu celular, sem custo algum.
+        <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
+          O Nexo conecta proprietários, imobiliárias e inquilinos em uma plataforma simples.
+          Contratos, cobranças e repasses — tudo no seu celular.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#cta"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition hover:opacity-90"
           >
             Começar agora — é grátis
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRight className="h-4 w-4" />
           </a>
           <a
             href="#como-funciona"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-7 py-4 text-base font-semibold text-foreground transition hover:bg-surface-elevated"
+            className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-foreground transition hover:bg-surface"
           >
             Ver como funciona
           </a>
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <div className="animate-float">
-            <Logo size={140} />
+        <div className="mt-16 flex justify-center">
+          <div className="animate-float opacity-90">
+            <Logo size={96} />
           </div>
         </div>
       </div>
@@ -327,17 +336,20 @@ function Pricing() {
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Proprietários e imobiliárias <strong className="text-foreground">não pagam nada</strong> para usar o Nexo.
-            Cobramos apenas <strong className="text-foreground">R$ 24,90 por inquilino</strong>, e esse valor já vem
-            incluído automaticamente no boleto do aluguel.
+            O inquilino paga a <strong className="text-foreground">Taxa de Gestão Digital da Locação</strong> —
+            apenas <strong className="text-foreground">R$ 24,90</strong>, já inclusa automaticamente no boleto do aluguel.
           </p>
         </div>
 
         <div className="mt-14 grid gap-8 md:grid-cols-2">
-          <div className="glass rounded-3xl p-8 shadow-card">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
-              <Wallet className="h-7 w-7 text-primary-foreground" />
+          <div className="rounded-3xl border border-border/60 bg-surface p-8">
+            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-elevated">
+              <Wallet className="h-6 w-6 text-primary-glow" />
             </div>
-            <h3 className="font-display text-2xl font-bold">R$ 24,90 / inquilino</h3>
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Taxa de Gestão Digital da Locação
+            </div>
+            <h3 className="mt-2 font-display text-3xl font-semibold">R$ 24,90 <span className="text-base font-normal text-muted-foreground">/ inquilino</span></h3>
             <p className="mt-3 text-muted-foreground">
               Uma taxa única e transparente, cobrada do inquilino dentro do próprio boleto.
               Sem mensalidade, sem setup, sem surpresas para você.
@@ -357,11 +369,11 @@ function Pricing() {
             </ul>
           </div>
 
-          <div className="glass rounded-3xl p-8 shadow-card">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
-              <ShieldCheck className="h-7 w-7 text-primary-foreground" />
+          <div className="rounded-3xl border border-border/60 bg-surface p-8">
+            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-elevated">
+              <ShieldCheck className="h-6 w-6 text-primary-glow" />
             </div>
-            <h3 className="font-display text-2xl font-bold">Split automático de pagamentos</h3>
+            <h3 className="font-display text-2xl font-semibold">Split automático de pagamentos</h3>
             <p className="mt-3 text-muted-foreground">
               O inquilino paga um único boleto. Nosso sistema divide o valor automaticamente
               entre as 3 partes — o dinheiro <strong className="text-foreground">nunca passa pela conta da Nexo</strong>.
@@ -446,7 +458,7 @@ function FAQ() {
   const items = [
     {
       q: "O Nexo é realmente gratuito para mim?",
-      a: "Sim. Proprietários e imobiliárias não pagam nada. Cobramos apenas uma taxa de R$ 24,90 por inquilino, que já vem incluída automaticamente no boleto do aluguel.",
+      a: "Sim. Proprietários e imobiliárias não pagam nada. O inquilino paga a Taxa de Gestão Digital da Locação — R$ 24,90 — que já vem inclusa automaticamente no boleto do aluguel.",
     },
     {
       q: "Como funciona o split de pagamentos?",
