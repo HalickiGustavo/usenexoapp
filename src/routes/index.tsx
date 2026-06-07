@@ -1,29 +1,469 @@
 import { createFileRoute } from "@tanstack/react-router";
+import logoAsset from "@/assets/nexo-logo.png.asset.json";
+import {
+  Building2,
+  Users,
+  Wallet,
+  FileText,
+  Bell,
+  ShieldCheck,
+  Smartphone,
+  BarChart3,
+  Check,
+  ArrowRight,
+  Sparkles,
+  KeyRound,
+  MessageSquare,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Nexo — Gestão de imóveis alugados, 100% gratuita" },
+      {
+        name: "description",
+        content:
+          "App de gestão de aluguéis para imobiliárias e proprietários autônomos. Contratos, cobranças, repasses e inquilinos em um só lugar. Sem custo.",
+      },
+      { property: "og:title", content: "Nexo — Gestão de imóveis alugados" },
+      {
+        property: "og:description",
+        content:
+          "Toda a gestão dos seus aluguéis feita pelo app. Grátis para imobiliárias e proprietários.",
+      },
     ],
   }),
-  component: Index,
+  component: LandingPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function LandingPage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <main>
+        <Hero />
+        <SocialProof />
+        <Features />
+        <ForWho />
+        <HowItWorks />
+        <FAQ />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
+  );
+}
+
+function Logo({ size = 40 }: { size?: number }) {
+  return (
+    <img
+      src={logoAsset.url}
+      alt="Nexo"
+      width={size}
+      height={size}
+      className="rounded-xl"
+      style={{ width: size, height: size }}
+    />
+  );
+}
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <a href="#" className="flex items-center gap-3">
+          <Logo size={36} />
+          <span className="font-display text-xl font-bold tracking-tight">
+            NE<span className="text-primary-glow">X</span>O
+          </span>
+        </a>
+        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+          <a href="#recursos" className="transition hover:text-foreground">Recursos</a>
+          <a href="#para-quem" className="transition hover:text-foreground">Para quem é</a>
+          <a href="#como-funciona" className="transition hover:text-foreground">Como funciona</a>
+          <a href="#faq" className="transition hover:text-foreground">FAQ</a>
+        </nav>
+        <a
+          href="#cta"
+          className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+        >
+          Baixar grátis
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
+      <div className="pointer-events-none absolute left-1/2 top-20 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px] animate-pulse-glow" />
+
+      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-32 text-center">
+        <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface px-4 py-1.5 text-xs font-medium text-muted-foreground">
+          <Sparkles className="h-3.5 w-3.5 text-primary-glow" />
+          100% gratuito para proprietários e imobiliárias
+        </div>
+
+        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+          A gestão dos seus{" "}
+          <span className="text-gradient">aluguéis</span>,
+          <br />
+          finalmente em um só app.
+        </h1>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          O Nexo conecta proprietários, imobiliárias e inquilinos em uma única plataforma.
+          Contratos, cobranças, repasses e comunicação — tudo no seu celular, sem custo algum.
+        </p>
+
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="#cta"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+          >
+            Começar agora — é grátis
+            <ArrowRight className="h-5 w-5" />
+          </a>
+          <a
+            href="#como-funciona"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-7 py-4 text-base font-semibold text-foreground transition hover:bg-surface-elevated"
+          >
+            Ver como funciona
+          </a>
+        </div>
+
+        <div className="mt-20 flex justify-center">
+          <div className="animate-float">
+            <Logo size={140} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SocialProof() {
+  const stats = [
+    { value: "R$ 0", label: "de mensalidade" },
+    { value: "100%", label: "gestão pelo app" },
+    { value: "24/7", label: "acesso de qualquer lugar" },
+    { value: "1 app", label: "para tudo" },
+  ];
+  return (
+    <section className="border-y border-border/40 bg-surface/40">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
+        {stats.map((s) => (
+          <div key={s.label} className="text-center">
+            <div className="font-display text-3xl font-bold text-foreground md:text-4xl">{s.value}</div>
+            <div className="mt-1 text-sm text-muted-foreground">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Features() {
+  const features = [
+    {
+      icon: Building2,
+      title: "Cadastro de imóveis",
+      desc: "Organize todo o seu portfólio com fotos, documentos e status em tempo real.",
+    },
+    {
+      icon: FileText,
+      title: "Contratos digitais",
+      desc: "Crie, gerencie e assine contratos de locação direto no app, com total segurança.",
+    },
+    {
+      icon: Wallet,
+      title: "Cobranças automáticas",
+      desc: "Boletos, Pix e repasses gerados automaticamente. Você só acompanha.",
+    },
+    {
+      icon: Users,
+      title: "Gestão de inquilinos",
+      desc: "Histórico, contatos, pagamentos e ocorrências de cada inquilino organizados.",
+    },
+    {
+      icon: Bell,
+      title: "Notificações inteligentes",
+      desc: "Avisos de vencimento, atrasos e renovações para você nunca perder um prazo.",
+    },
+    {
+      icon: BarChart3,
+      title: "Relatórios completos",
+      desc: "Acompanhe receita, inadimplência e desempenho de cada imóvel em segundos.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Comunicação centralizada",
+      desc: "Converse com inquilinos e proprietários sem sair do app.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Segurança total",
+      desc: "Seus dados e contratos protegidos com criptografia de ponta a ponta.",
+    },
+  ];
+
+  return (
+    <section id="recursos" className="relative py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Recursos
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Tudo o que você precisa para gerir aluguéis
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Uma plataforma completa, pensada para quem vive de locação — sem planilhas,
+            sem papelada, sem dor de cabeça.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((f) => (
+            <div
+              key={f.title}
+              className="group relative rounded-2xl border border-border/60 bg-surface p-6 transition hover:border-primary/50 hover:bg-surface-elevated"
+            >
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand shadow-glow">
+                <f.icon className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="font-display text-lg font-semibold">{f.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ForWho() {
+  const cards = [
+    {
+      icon: KeyRound,
+      title: "Proprietários autônomos",
+      bullets: [
+        "Gerencie seus próprios imóveis sem depender de imobiliária",
+        "Receba pagamentos diretamente, sem taxas escondidas",
+        "Controle financeiro completo na palma da mão",
+      ],
+    },
+    {
+      icon: Building2,
+      title: "Imobiliárias",
+      bullets: [
+        "Centralize toda a carteira de imóveis e clientes",
+        "Equipe organizada com permissões e tarefas",
+        "Mais produtividade, menos planilhas",
+      ],
+    },
+  ];
+
+  return (
+    <section id="para-quem" className="relative py-28">
+      <div className="absolute inset-0 bg-gradient-hero opacity-50" />
+      <div className="relative mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Para quem é
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Feito para quem aluga.
+            <br /> Grátis para todos.
+          </h2>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {cards.map((c) => (
+            <div
+              key={c.title}
+              className="glass rounded-3xl p-8 shadow-card transition hover:-translate-y-1"
+            >
+              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+                <c.icon className="h-7 w-7 text-primary-foreground" />
+              </div>
+              <h3 className="font-display text-2xl font-bold">{c.title}</h3>
+              <ul className="mt-6 space-y-3">
+                {c.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-3 text-muted-foreground">
+                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-glow" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    {
+      n: "01",
+      title: "Baixe o app",
+      desc: "Disponível para Android e iOS. Crie sua conta em menos de 1 minuto.",
+    },
+    {
+      n: "02",
+      title: "Cadastre seus imóveis",
+      desc: "Adicione propriedades, inquilinos e contratos com poucos toques.",
+    },
+    {
+      n: "03",
+      title: "Gerencie tudo pelo celular",
+      desc: "Cobranças, repasses e comunicação acontecem automaticamente no app.",
+    },
+  ];
+
+  return (
+    <section id="como-funciona" className="py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Como funciona
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Começar leva menos de 5 minutos
+          </h2>
+        </div>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <div key={s.n} className="relative">
+              <div className="rounded-2xl border border-border/60 bg-surface p-8">
+                <div className="font-display text-5xl font-bold text-gradient">{s.n}</div>
+                <h3 className="mt-4 font-display text-xl font-semibold">{s.title}</h3>
+                <p className="mt-2 text-muted-foreground">{s.desc}</p>
+              </div>
+              {i < steps.length - 1 && (
+                <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-primary-glow md:block" />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const items = [
+    {
+      q: "O Nexo é realmente gratuito?",
+      a: "Sim. Não cobramos mensalidade nem taxa de proprietários ou imobiliárias. Toda a gestão é feita pelo app sem custo.",
+    },
+    {
+      q: "Preciso de equipamento ou sistema adicional?",
+      a: "Não. Tudo funciona direto no seu celular — basta baixar o app e cadastrar seus imóveis.",
+    },
+    {
+      q: "Posso usar mesmo tendo apenas 1 imóvel?",
+      a: "Sim! O Nexo é ideal tanto para proprietários autônomos com 1 imóvel quanto para imobiliárias com grandes carteiras.",
+    },
+    {
+      q: "Como funcionam as cobranças?",
+      a: "Geramos boletos e Pix automaticamente para os inquilinos e organizamos o repasse para o proprietário, tudo dentro do app.",
+    },
+    {
+      q: "Meus dados estão seguros?",
+      a: "Sim. Usamos criptografia de ponta e seguimos as melhores práticas de segurança e LGPD.",
+    },
+  ];
+
+  return (
+    <section id="faq" className="py-28">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Dúvidas frequentes
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Perguntas frequentes
+          </h2>
+        </div>
+
+        <div className="mt-12 space-y-4">
+          {items.map((item) => (
+            <details
+              key={item.q}
+              className="group rounded-2xl border border-border/60 bg-surface p-6 transition open:bg-surface-elevated"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between font-display text-lg font-semibold">
+                {item.q}
+                <span className="ml-4 text-primary-glow transition group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-4 text-muted-foreground">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCTA() {
+  return (
+    <section id="cta" className="relative overflow-hidden py-28">
+      <div className="absolute inset-0 bg-gradient-hero" />
+      <div className="relative mx-auto max-w-4xl px-6 text-center">
+        <Smartphone className="mx-auto mb-6 h-12 w-12 text-primary-glow" />
+        <h2 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
+          Sua gestão de aluguéis,
+          <br />
+          <span className="text-gradient">simples como deveria ser.</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+          Junte-se a milhares de proprietários e imobiliárias que já trocaram planilhas
+          pelo Nexo. Sem custos. Sem complicação.
+        </p>
+
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+          >
+            Baixar para Android
+          </a>
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-8 py-4 text-base font-semibold text-foreground transition hover:bg-surface-elevated"
+          >
+            Baixar para iOS
+          </a>
+        </div>
+        <p className="mt-6 text-sm text-muted-foreground">
+          100% gratuito • Sem cartão de crédito • Cancele quando quiser
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border/40 bg-surface/40">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 md:flex-row">
+        <div className="flex items-center gap-3">
+          <Logo size={32} />
+          <span className="font-display font-bold">
+            NE<span className="text-primary-glow">X</span>O
+          </span>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Nexo. Gestão de imóveis alugados.
+        </p>
+      </div>
+    </footer>
   );
 }
