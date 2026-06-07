@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Nexo Gestao" },
+      { name: "description", content: "Nexo is a free property management app for landlords and real estate agencies." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Nexo Gestao" },
+      { property: "og:description", content: "Nexo is a free property management app for landlords and real estate agencies." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Nexo Gestao" },
+      { name: "twitter:description", content: "Nexo is a free property management app for landlords and real estate agencies." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6de66cb7-b221-4817-b1c0-f637339a5c38/id-preview-f1a7716c--bacd8b53-3cf4-418b-94c1-9fe2649508fd.lovable.app-1780857188320.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6de66cb7-b221-4817-b1c0-f637339a5c38/id-preview-f1a7716c--bacd8b53-3cf4-418b-94c1-9fe2649508fd.lovable.app-1780857188320.png" },
     ],
     links: [
       {
