@@ -45,6 +45,7 @@ function LandingPage() {
         <SocialProof />
         <Features />
         <ForWho />
+        <Pricing />
         <HowItWorks />
         <FAQ />
         <FinalCTA />
