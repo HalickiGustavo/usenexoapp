@@ -458,7 +458,7 @@ function FAQ() {
   const items = [
     {
       q: "O Nexo é realmente gratuito para mim?",
-      a: "Sim. Proprietários e imobiliárias não pagam nada. Cobramos apenas uma taxa de R$ 24,90 por inquilino, que já vem incluída automaticamente no boleto do aluguel.",
+      a: "Sim. Proprietários e imobiliárias não pagam nada. O inquilino paga a Taxa de Gestão Digital da Locação — R$ 24,90 — que já vem inclusa automaticamente no boleto do aluguel.",
     },
     {
       q: "Como funciona o split de pagamentos?",
