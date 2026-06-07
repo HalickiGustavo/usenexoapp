@@ -45,6 +45,7 @@ function LandingPage() {
         <SocialProof />
         <Features />
         <ForWho />
+        <Pricing />
         <HowItWorks />
         <FAQ />
         <FinalCTA />
@@ -72,7 +73,6 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-3">
-          <Logo size={36} />
           <span className="font-display text-xl font-bold tracking-tight">
             NE<span className="text-primary-glow">X</span>O
           </span>
@@ -80,6 +80,7 @@ function Header() {
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#recursos" className="transition hover:text-foreground">Recursos</a>
           <a href="#para-quem" className="transition hover:text-foreground">Para quem é</a>
+          <a href="#precos" className="transition hover:text-foreground">Preços</a>
           <a href="#como-funciona" className="transition hover:text-foreground">Como funciona</a>
           <a href="#faq" className="transition hover:text-foreground">FAQ</a>
         </nav>
@@ -307,6 +308,90 @@ function ForWho() {
   );
 }
 
+function Pricing() {
+  const parts = [
+    { label: "Nexo", desc: "Taxa de serviço da plataforma" },
+    { label: "Imobiliária", desc: "Comissão de administração (quando houver)" },
+    { label: "Proprietário", desc: "Valor líquido do aluguel" },
+  ];
+  return (
+    <section id="precos" className="relative py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Modelo de cobrança
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Grátis para você.
+            <br /> Pago pelo inquilino.
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Proprietários e imobiliárias <strong className="text-foreground">não pagam nada</strong> para usar o Nexo.
+            Cobramos apenas <strong className="text-foreground">R$ 24,90 por inquilino</strong>, e esse valor já vem
+            incluído automaticamente no boleto do aluguel.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-8 md:grid-cols-2">
+          <div className="glass rounded-3xl p-8 shadow-card">
+            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+              <Wallet className="h-7 w-7 text-primary-foreground" />
+            </div>
+            <h3 className="font-display text-2xl font-bold">R$ 24,90 / inquilino</h3>
+            <p className="mt-3 text-muted-foreground">
+              Uma taxa única e transparente, cobrada do inquilino dentro do próprio boleto.
+              Sem mensalidade, sem setup, sem surpresas para você.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {[
+                "Proprietário não paga nada",
+                "Imobiliária não paga nada",
+                "Taxa já embutida no boleto do aluguel",
+                "Sem cobranças escondidas",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-3 text-muted-foreground">
+                  <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-glow" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="glass rounded-3xl p-8 shadow-card">
+            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+              <ShieldCheck className="h-7 w-7 text-primary-foreground" />
+            </div>
+            <h3 className="font-display text-2xl font-bold">Split automático de pagamentos</h3>
+            <p className="mt-3 text-muted-foreground">
+              O inquilino paga um único boleto. Nosso sistema divide o valor automaticamente
+              entre as 3 partes — o dinheiro <strong className="text-foreground">nunca passa pela conta da Nexo</strong>.
+            </p>
+            <div className="mt-6 space-y-3">
+              {parts.map((p) => (
+                <div
+                  key={p.label}
+                  className="flex items-center justify-between rounded-xl border border-border/60 bg-surface px-4 py-3"
+                >
+                  <div>
+                    <div className="font-semibold">{p.label}</div>
+                    <div className="text-xs text-muted-foreground">{p.desc}</div>
+                  </div>
+                  <Check className="h-5 w-5 text-primary-glow" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted-foreground">
+          Modelo 100% transparente: cada parte recebe direto na sua conta, sem intermediação financeira da Nexo.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+
 function HowItWorks() {
   const steps = [
     {
@@ -360,8 +445,12 @@ function HowItWorks() {
 function FAQ() {
   const items = [
     {
-      q: "O Nexo é realmente gratuito?",
-      a: "Sim. Não cobramos mensalidade nem taxa de proprietários ou imobiliárias. Toda a gestão é feita pelo app sem custo.",
+      q: "O Nexo é realmente gratuito para mim?",
+      a: "Sim. Proprietários e imobiliárias não pagam nada. Cobramos apenas uma taxa de R$ 24,90 por inquilino, que já vem incluída automaticamente no boleto do aluguel.",
+    },
+    {
+      q: "Como funciona o split de pagamentos?",
+      a: "O inquilino paga um único boleto e nosso sistema divide o valor automaticamente em 3 partes: Nexo, imobiliária e proprietário. O dinheiro nunca passa pela conta da Nexo — cada parte recebe direto na sua conta.",
     },
     {
       q: "Preciso de equipamento ou sistema adicional?",
