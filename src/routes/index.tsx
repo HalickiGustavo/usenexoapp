@@ -307,6 +307,90 @@ function ForWho() {
   );
 }
 
+function Pricing() {
+  const parts = [
+    { label: "Nexo", desc: "Taxa de serviço da plataforma" },
+    { label: "Imobiliária", desc: "Comissão de administração (quando houver)" },
+    { label: "Proprietário", desc: "Valor líquido do aluguel" },
+  ];
+  return (
+    <section id="precos" className="relative py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Modelo de cobrança
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Grátis para você.
+            <br /> Pago pelo inquilino.
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Proprietários e imobiliárias <strong className="text-foreground">não pagam nada</strong> para usar o Nexo.
+            Cobramos apenas <strong className="text-foreground">R$ 24,90 por inquilino</strong>, e esse valor já vem
+            incluído automaticamente no boleto do aluguel.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-8 md:grid-cols-2">
+          <div className="glass rounded-3xl p-8 shadow-card">
+            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+              <Wallet className="h-7 w-7 text-primary-foreground" />
+            </div>
+            <h3 className="font-display text-2xl font-bold">R$ 24,90 / inquilino</h3>
+            <p className="mt-3 text-muted-foreground">
+              Uma taxa única e transparente, cobrada do inquilino dentro do próprio boleto.
+              Sem mensalidade, sem setup, sem surpresas para você.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {[
+                "Proprietário não paga nada",
+                "Imobiliária não paga nada",
+                "Taxa já embutida no boleto do aluguel",
+                "Sem cobranças escondidas",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-3 text-muted-foreground">
+                  <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-glow" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="glass rounded-3xl p-8 shadow-card">
+            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
+              <ShieldCheck className="h-7 w-7 text-primary-foreground" />
+            </div>
+            <h3 className="font-display text-2xl font-bold">Split automático de pagamentos</h3>
+            <p className="mt-3 text-muted-foreground">
+              O inquilino paga um único boleto. Nosso sistema divide o valor automaticamente
+              entre as 3 partes — o dinheiro <strong className="text-foreground">nunca passa pela conta da Nexo</strong>.
+            </p>
+            <div className="mt-6 space-y-3">
+              {parts.map((p) => (
+                <div
+                  key={p.label}
+                  className="flex items-center justify-between rounded-xl border border-border/60 bg-surface px-4 py-3"
+                >
+                  <div>
+                    <div className="font-semibold">{p.label}</div>
+                    <div className="text-xs text-muted-foreground">{p.desc}</div>
+                  </div>
+                  <Check className="h-5 w-5 text-primary-glow" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted-foreground">
+          Modelo 100% transparente: cada parte recebe direto na sua conta, sem intermediação financeira da Nexo.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+
 function HowItWorks() {
   const steps = [
     {
