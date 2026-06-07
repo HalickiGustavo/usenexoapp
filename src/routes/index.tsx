@@ -336,17 +336,20 @@ function Pricing() {
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Proprietários e imobiliárias <strong className="text-foreground">não pagam nada</strong> para usar o Nexo.
-            Cobramos apenas <strong className="text-foreground">R$ 24,90 por inquilino</strong>, e esse valor já vem
-            incluído automaticamente no boleto do aluguel.
+            O inquilino paga a <strong className="text-foreground">Taxa de Gestão Digital da Locação</strong> —
+            apenas <strong className="text-foreground">R$ 24,90</strong>, já inclusa automaticamente no boleto do aluguel.
           </p>
         </div>
 
         <div className="mt-14 grid gap-8 md:grid-cols-2">
-          <div className="glass rounded-3xl p-8 shadow-card">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
-              <Wallet className="h-7 w-7 text-primary-foreground" />
+          <div className="rounded-3xl border border-border/60 bg-surface p-8">
+            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-elevated">
+              <Wallet className="h-6 w-6 text-primary-glow" />
             </div>
-            <h3 className="font-display text-2xl font-bold">R$ 24,90 / inquilino</h3>
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Taxa de Gestão Digital da Locação
+            </div>
+            <h3 className="mt-2 font-display text-3xl font-semibold">R$ 24,90 <span className="text-base font-normal text-muted-foreground">/ inquilino</span></h3>
             <p className="mt-3 text-muted-foreground">
               Uma taxa única e transparente, cobrada do inquilino dentro do próprio boleto.
               Sem mensalidade, sem setup, sem surpresas para você.
