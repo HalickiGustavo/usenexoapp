@@ -114,46 +114,40 @@ function Header() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
-      <div className="pointer-events-none absolute left-1/2 top-20 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px] animate-pulse-glow" />
+      <div className="pointer-events-none absolute left-1/2 top-32 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-32 text-center">
-        <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface px-4 py-1.5 text-xs font-medium text-muted-foreground">
-          <Sparkles className="h-3.5 w-3.5 text-primary-glow" />
-          100% gratuito para proprietários e imobiliárias
-        </div>
-
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+      <div className="relative mx-auto max-w-5xl px-6 pt-24 pb-28 text-center">
+        <h1 className="mx-auto max-w-3xl font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl">
           A gestão dos seus{" "}
           <span className="text-gradient">aluguéis</span>,
           <br />
-          finalmente em um só app.
+          em um só lugar.
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          O Nexo conecta proprietários, imobiliárias e inquilinos em uma única plataforma.
-          Contratos, cobranças, repasses e comunicação — tudo no seu celular, sem custo algum.
+        <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
+          O Nexo conecta proprietários, imobiliárias e inquilinos em uma plataforma simples.
+          Contratos, cobranças e repasses — tudo no seu celular.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#cta"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition hover:opacity-90"
           >
             Começar agora — é grátis
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRight className="h-4 w-4" />
           </a>
           <a
             href="#como-funciona"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-7 py-4 text-base font-semibold text-foreground transition hover:bg-surface-elevated"
+            className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-foreground transition hover:bg-surface"
           >
             Ver como funciona
           </a>
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <div className="animate-float">
-            <Logo size={140} />
+        <div className="mt-16 flex justify-center">
+          <div className="animate-float opacity-90">
+            <Logo size={96} />
           </div>
         </div>
       </div>
