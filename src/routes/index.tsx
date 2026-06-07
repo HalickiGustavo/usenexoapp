@@ -369,11 +369,11 @@ function Pricing() {
             </ul>
           </div>
 
-          <div className="glass rounded-3xl p-8 shadow-card">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow">
-              <ShieldCheck className="h-7 w-7 text-primary-foreground" />
+          <div className="rounded-3xl border border-border/60 bg-surface p-8">
+            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-elevated">
+              <ShieldCheck className="h-6 w-6 text-primary-glow" />
             </div>
-            <h3 className="font-display text-2xl font-bold">Split automático de pagamentos</h3>
+            <h3 className="font-display text-2xl font-semibold">Split automático de pagamentos</h3>
             <p className="mt-3 text-muted-foreground">
               O inquilino paga um único boleto. Nosso sistema divide o valor automaticamente
               entre as 3 partes — o dinheiro <strong className="text-foreground">nunca passa pela conta da Nexo</strong>.
