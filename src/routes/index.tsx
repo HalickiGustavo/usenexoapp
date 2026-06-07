@@ -444,8 +444,12 @@ function HowItWorks() {
 function FAQ() {
   const items = [
     {
-      q: "O Nexo é realmente gratuito?",
-      a: "Sim. Não cobramos mensalidade nem taxa de proprietários ou imobiliárias. Toda a gestão é feita pelo app sem custo.",
+      q: "O Nexo é realmente gratuito para mim?",
+      a: "Sim. Proprietários e imobiliárias não pagam nada. Cobramos apenas uma taxa de R$ 24,90 por inquilino, que já vem incluída automaticamente no boleto do aluguel.",
+    },
+    {
+      q: "Como funciona o split de pagamentos?",
+      a: "O inquilino paga um único boleto e nosso sistema divide o valor automaticamente em 3 partes: Nexo, imobiliária e proprietário. O dinheiro nunca passa pela conta da Nexo — cada parte recebe direto na sua conta.",
     },
     {
       q: "Preciso de equipamento ou sistema adicional?",
