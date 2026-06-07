@@ -56,6 +56,20 @@ function LandingPage() {
   );
 }
 
+function TopBanner() {
+  return (
+    <div className="relative z-50 border-b border-primary/20 bg-gradient-brand">
+      <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs font-medium text-primary-foreground sm:text-sm">
+        <Sparkles className="h-3.5 w-3.5 flex-shrink-0" />
+        <span>
+          <strong>100% grátis</strong> para proprietários e imobiliárias — pague apenas a{" "}
+          <strong>Taxa de Gestão Digital da Locação</strong>, já inclusa no boleto do inquilino.
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function Logo({ size = 40 }: { size?: number }) {
   return (
     <img
