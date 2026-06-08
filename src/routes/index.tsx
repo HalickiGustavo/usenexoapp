@@ -208,7 +208,7 @@ function Header() {
           <img
             src={logoAsset.url}
             alt="Nexo"
-            className="h-[80%] w-auto object-contain"
+            className="h-[40%] w-auto object-contain"
           />
           <span className="sr-only">Nexo</span>
         </a>
