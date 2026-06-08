@@ -50,12 +50,80 @@ function LandingPage() {
         <SocialProof />
         <Features />
         <ForWho />
+        <Testimonials />
         <Pricing />
         <HowItWorks />
         <FAQ />
         <FinalCTA />
       </main>
       <Footer />
+      <LiveToast />
+    </div>
+  );
+}
+
+function LiveToast() {
+  const messages = [
+    "+1 inquilino usando a Nexo nesse exato momento",
+    "+1 imobiliária acabou de se cadastrar",
+    "+1 proprietário começou a usar agora",
+    "+1 contrato assinado pelo app",
+    "+1 boleto pago através da Nexo",
+  ];
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    if (dismissed) return;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const show = () => {
+      setVisible(true);
+      timeoutId = setTimeout(() => {
+        setVisible(false);
+        timeoutId = setTimeout(() => {
+          setIndex((i) => (i + 1) % messages.length);
+          show();
+        }, 800);
+      }, 5000);
+    };
+    const initial = setTimeout(show, 1500);
+    return () => {
+      clearTimeout(initial);
+      clearTimeout(timeoutId);
+    };
+  }, [dismissed, messages.length]);
+
+  if (dismissed) return null;
+
+  return (
+    <div
+      className={`fixed bottom-4 left-4 z-50 max-w-[calc(100vw-2rem)] transition-all duration-500 sm:max-w-sm ${
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+      }`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-elevated/95 p-3 pr-2 shadow-card backdrop-blur-xl">
+        <div className="relative flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand shadow-glow">
+          <UserPlus className="h-4 w-4 text-primary-foreground" />
+          <span className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+          </span>
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium leading-tight text-foreground">{messages[index]}</p>
+          <p className="mt-0.5 text-[11px] text-muted-foreground">Atividade ao vivo · agora mesmo</p>
+        </div>
+        <button
+          onClick={() => setDismissed(true)}
+          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-muted-foreground transition hover:bg-surface hover:text-foreground"
+          aria-label="Fechar"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }
