@@ -204,8 +204,12 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 bg-slate-50">
-        <a href="#" className="flex items-center gap-3">
-          <Logo size={40} />
+        <a href="#" className="flex w-1/2 items-center">
+          <img
+            src={logoAsset.url}
+            alt="Nexo"
+            className="h-auto w-full max-w-[260px] object-contain"
+          />
           <span className="sr-only">Nexo</span>
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
