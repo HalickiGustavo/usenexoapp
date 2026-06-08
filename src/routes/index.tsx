@@ -203,12 +203,12 @@ function Logo({ size = 40 }: { size?: number }) {
 function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-0.5 sm:py-1 bg-slate-50">
-        <a href="#" className="flex w-1/2 items-center">
+      <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-6 bg-slate-50">
+        <a href="#" className="flex h-full items-center">
           <img
             src={logoAsset.url}
             alt="Nexo"
-            className="h-auto w-full max-w-[260px] object-contain"
+            className="h-[180%] w-auto object-contain"
           />
           <span className="sr-only">Nexo</span>
         </a>
