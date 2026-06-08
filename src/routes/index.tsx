@@ -317,45 +317,60 @@ function SocialProof() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-surface-elevated/80 p-6 shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-glow animate-fade-in"
-              style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
-            >
-              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative">
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                  <s.icon className="h-5 w-5" />
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={[Autoplay({ delay: 3500, stopOnInteraction: false })]}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {stats.map((s, i) => (
+              <CarouselItem key={s.label} className="pl-4 basis-4/5 sm:basis-1/2 lg:basis-1/4">
+                <div
+                  className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-surface-elevated/80 p-6 shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-glow"
+                  style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
+                >
+                  <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative">
+                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                      <s.icon className="h-5 w-5" />
+                    </div>
+                    <div className="font-display text-3xl font-bold text-foreground md:text-4xl">
+                      {s.value}
+                    </div>
+                    <div className="mt-1 text-sm font-semibold text-foreground">{s.label}</div>
+                    <div className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.desc}</div>
+                  </div>
                 </div>
-                <div className="font-display text-3xl font-bold text-foreground md:text-4xl">
-                  {s.value}
-                </div>
-                <div className="mt-1 text-sm font-semibold text-foreground">{s.label}</div>
-                <div className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="mt-6 flex items-center justify-center gap-2">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
+          </div>
+        </Carousel>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 rounded-2xl border border-border/60 bg-surface-elevated/60 p-6 backdrop-blur-sm sm:grid-cols-2 lg:grid-cols-4 lg:p-8">
-          {benefits.map((b, i) => (
-            <div
-              key={b.title}
-              className="flex items-start gap-3 animate-fade-in"
-              style={{ animationDelay: `${400 + i * 80}ms`, animationFillMode: "backwards" }}
-            >
-              <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                <b.icon className="h-4 w-4" strokeWidth={3} />
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-foreground">{b.title}</div>
-                <div className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{b.desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]}
+          className="mt-12 w-full rounded-2xl border border-border/60 bg-surface-elevated/60 p-6 backdrop-blur-sm lg:p-8"
+        >
+          <CarouselContent className="-ml-4">
+            {benefits.map((b) => (
+              <CarouselItem key={b.title} className="pl-4 basis-4/5 sm:basis-1/2 lg:basis-1/4">
+                <div className="flex h-full items-start gap-3">
+                  <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <b.icon className="h-4 w-4" strokeWidth={3} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-foreground">{b.title}</div>
+                    <div className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{b.desc}</div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
