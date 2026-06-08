@@ -66,7 +66,7 @@ function LandingPage() {
 }
 
 function WhatsAppFloat() {
-  const phone = "5511999999999";
+  const phone = "5541998766169";
   const message = encodeURIComponent(
     "Olá! Vim pelo site da Nexo e gostaria de tirar algumas dúvidas."
   );
@@ -83,20 +83,19 @@ function WhatsAppFloat() {
       <span className="hidden rounded-full border border-border/60 bg-surface-elevated/95 px-3 py-1.5 text-xs font-medium text-foreground shadow-card backdrop-blur-xl sm:inline-block">
         Fale com a Nexo
       </span>
-      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-glow transition hover:scale-105">
-        <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-30" />
-        <svg
-          viewBox="0 0 32 32"
-          className="relative h-7 w-7 fill-white"
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0a0e2a] shadow-glow ring-1 ring-primary/40 transition hover:scale-105">
+        <span className="absolute inset-0 animate-ping rounded-2xl bg-primary/40 opacity-30" />
+        <span
+          className="relative font-display text-3xl font-black leading-none text-[#7C51FE]"
           aria-hidden="true"
         >
-          <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.158-.673.158-1.017 0-.214-.057-.43-.157-.616-.18-.302-1.18-.74-1.464-.86zM16.5 27.554c-1.733 0-3.435-.502-4.876-1.42L4.5 27.5l1.434-7.034a8.954 8.954 0 0 1-1.392-4.798c0-4.979 4.063-9.042 9.042-9.042S22.626 10.69 22.626 15.668c0 4.979-4.063 9.042-9.042 9.042z" />
-          <path d="M16 3C8.82 3 3 8.82 3 16c0 2.293.6 4.532 1.738 6.504L3 29l6.65-1.738A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.8a10.78 10.78 0 0 1-5.49-1.498l-.394-.234-3.948 1.034 1.054-3.85-.257-.408A10.74 10.74 0 0 1 5.2 16C5.2 10.04 10.04 5.2 16 5.2S26.8 10.04 26.8 16 21.96 26.8 16 26.8z" />
-        </svg>
+          X
+        </span>
       </span>
     </a>
   );
 }
+
 
 
 function LiveToast() {
