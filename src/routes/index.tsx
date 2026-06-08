@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/nexo-logo-final.png.asset.json";
+import logoAsset from "@/assets/nexo-logo-cropped.png.asset.json";
 import {
   Building2,
   Users,
@@ -208,7 +208,7 @@ function Header() {
           <img
             src={logoAsset.url}
             alt="Nexo"
-            className="h-[180%] w-auto object-contain"
+            className="h-[80%] w-auto object-contain"
           />
           <span className="sr-only">Nexo</span>
         </a>
