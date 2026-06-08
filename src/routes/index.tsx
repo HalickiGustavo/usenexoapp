@@ -80,17 +80,19 @@ function WhatsAppFloat() {
       aria-label="Falar com atendente da Nexo no WhatsApp"
       className="group fixed bottom-4 right-4 z-50 flex items-center gap-3 sm:bottom-6 sm:right-6"
     >
-      <span className="hidden rounded-full border border-border/60 bg-surface-elevated/95 px-3 py-1.5 text-xs font-medium text-foreground shadow-card backdrop-blur-xl sm:inline-block">
-        Fale com a Nexo
+      <span className="hidden rounded-full border border-[#25D366]/30 bg-white px-4 py-2 text-sm font-medium text-[#0a0e2a] shadow-card sm:inline-block">
+        Envie uma mensagem aqui 👋
       </span>
-      <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0a0e2a] shadow-glow ring-1 ring-primary/40 transition hover:scale-105">
-        <span className="absolute inset-0 animate-ping rounded-2xl bg-primary/40 opacity-30" />
-        <span
-          className="relative font-display text-3xl font-black leading-none text-[#7C51FE]"
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-glow transition hover:scale-105">
+        <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366]/40 opacity-40" />
+        <svg
+          viewBox="0 0 32 32"
+          className="relative h-7 w-7 text-white"
+          fill="currentColor"
           aria-hidden="true"
         >
-          X
-        </span>
+          <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.99 2.722.99.358 0 2.13-.5 2.13-1.49 0-.043 0-.115-.03-.158-.1-.172-2.05-.93-2.236-.93zM16.225 4C9.466 4 4 9.466 4 16.225c0 2.4.71 4.643 1.926 6.527L4 28.225l5.652-1.842a12.057 12.057 0 0 0 6.573 1.913c6.76 0 12.226-5.466 12.226-12.225C28.45 9.466 22.984 4 16.225 4zm0 22.398a10.13 10.13 0 0 1-5.523-1.626l-.4-.243-3.353 1.075 1.09-3.267-.258-.415a10.097 10.097 0 0 1-1.555-5.397c0-5.59 4.547-10.137 10.138-10.137 5.59 0 10.137 4.547 10.137 10.137 0 5.59-4.547 10.137-10.275 10.137z" />
+        </svg>
       </span>
     </a>
   );
