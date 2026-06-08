@@ -206,7 +206,7 @@ function Hero() {
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#cta"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition hover:opacity-90 text-slate-50 bg-[#7d52fe]"
+            className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition hover:opacity-90 text-slate-50 bg-[#7C51FE]"
           >
             Começar agora — é grátis
             <ArrowRight className="h-4 w-4" />
