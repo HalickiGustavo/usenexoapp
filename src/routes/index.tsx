@@ -264,11 +264,7 @@ function Hero() {
           </a>
         </div>
 
-        <div className="mt-16 flex justify-center">
-          <div className="animate-float opacity-90">
-            <Logo size={96} />
-          </div>
-        </div>
+        <div className="mt-8" />
       </div>
     </section>
   );
