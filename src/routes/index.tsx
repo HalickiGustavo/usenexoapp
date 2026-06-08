@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import logoAsset from "@/assets/nexo-logo-cropped.png.asset.json";
-import founderPhoto from "@/assets/founder-photo.jpeg.asset.json";
+import founderPhoto from "@/assets/founder-cutout.png.asset.json";
 import {
   Building2,
   Users,
@@ -239,11 +239,11 @@ function Hero() {
       <div className="pointer-events-none absolute left-1/2 top-32 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
 
       <div className="relative mx-auto max-w-5xl px-6 pt-6 pb-20 sm:pt-10 sm:pb-28 text-center">
-        <div className="mx-auto mb-6 h-28 w-28 sm:h-32 sm:w-32 overflow-hidden rounded-full ring-2 ring-primary/30 shadow-lg">
+        <div className="mx-auto mb-2 flex justify-center">
           <img
             src={founderPhoto.url}
             alt="Fundador do Nexo"
-            className="h-full w-full object-cover object-top scale-150 -translate-y-2"
+            className="h-48 w-auto sm:h-64 md:h-72 object-contain drop-shadow-[0_20px_40px_rgba(124,81,254,0.25)]"
           />
         </div>
         <h1 className="mx-auto max-w-3xl font-display text-[34px] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
