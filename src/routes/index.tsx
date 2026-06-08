@@ -18,6 +18,8 @@ import {
   Star,
   X,
   UserPlus,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -84,10 +86,10 @@ function LiveToast() {
         timeoutId = setTimeout(() => {
           setIndex((i) => (i + 1) % messages.length);
           show();
-        }, 800);
-      }, 5000);
+        }, 18000);
+      }, 6000);
     };
-    const initial = setTimeout(show, 1500);
+    const initial = setTimeout(show, 5000);
     return () => {
       clearTimeout(initial);
       clearTimeout(timeoutId);
@@ -464,38 +466,110 @@ function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure
-              key={t.name}
-              className="flex h-full flex-col rounded-2xl border border-border/60 bg-surface p-6 transition hover:border-primary/40 hover:bg-surface-elevated"
-            >
-              <div className="mb-3 flex">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-primary-glow text-primary-glow" />
-                ))}
-              </div>
-              <blockquote className="flex-1 text-[15px] leading-relaxed text-foreground/90">
-                “{t.quote}”
-              </blockquote>
-              <figcaption className="mt-6 flex items-center gap-3 border-t border-border/40 pt-4">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand font-display text-sm font-bold text-primary-foreground">
-                  {t.initials}
-                </div>
-                <div className="min-w-0">
-                  <div className="truncate font-semibold">{t.name}</div>
-                  <div className="truncate text-xs text-muted-foreground">
-                    {t.role} · {t.city}
-                  </div>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        <TestimonialsCarousel testimonials={testimonials} />
       </div>
     </section>
   );
 }
+
+function TestimonialsCarousel({
+  testimonials,
+}: {
+  testimonials: {
+    name: string;
+    role: string;
+    city: string;
+    quote: string;
+    initials: string;
+  }[];
+}) {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = testimonials.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setActive((i) => (i + 1) % total);
+    }, 6000);
+    return () => clearInterval(id);
+  }, [paused, total]);
+
+  const go = (dir: number) => setActive((i) => (i + dir + total) % total);
+
+  return (
+    <div
+      className="mt-14"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${active * 100}%)` }}
+        >
+          {testimonials.map((t) => (
+            <div key={t.name} className="w-full flex-shrink-0 px-2 sm:px-6">
+              <figure className="mx-auto flex max-w-3xl flex-col rounded-3xl border border-border/60 bg-surface p-8 md:p-10">
+                <div className="mb-4 flex">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-primary-glow text-primary-glow" />
+                  ))}
+                </div>
+                <blockquote className="text-lg leading-relaxed text-foreground/90 md:text-xl">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-8 flex items-center gap-4 border-t border-border/40 pt-5">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand font-display text-base font-bold text-primary-foreground">
+                    {t.initials}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="truncate font-semibold">{t.name}</div>
+                    <div className="truncate text-sm text-muted-foreground">
+                      {t.role} · {t.city}
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 flex items-center justify-center gap-4">
+        <button
+          onClick={() => go(-1)}
+          aria-label="Anterior"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:bg-surface-elevated"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {testimonials.map((t, i) => (
+            <button
+              key={t.name}
+              onClick={() => setActive(i)}
+              aria-label={`Ir para depoimento ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active ? "w-8 bg-primary-glow" : "w-2 bg-border hover:bg-muted-foreground/60"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => go(1)}
+          aria-label="Próximo"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:bg-surface-elevated"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 
 function Pricing() {
   const parts = [
