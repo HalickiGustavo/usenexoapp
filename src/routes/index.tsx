@@ -192,10 +192,9 @@ function Logo({ size = 40 }: { size?: number }) {
     <img
       src={logoAsset.url}
       alt="Nexo"
-      width={size}
       height={size}
-      className="rounded-xl"
-      style={{ width: size, height: size }}
+      className="object-contain"
+      style={{ height: size, width: "auto" }}
     />
   );
 }
