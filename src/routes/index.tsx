@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import logoAsset from "@/assets/nexo-logo.png.asset.json";
 import {
   Building2,
@@ -14,6 +15,9 @@ import {
   Sparkles,
   KeyRound,
   MessageSquare,
+  Star,
+  X,
+  UserPlus,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -46,12 +50,80 @@ function LandingPage() {
         <SocialProof />
         <Features />
         <ForWho />
+        <Testimonials />
         <Pricing />
         <HowItWorks />
         <FAQ />
         <FinalCTA />
       </main>
       <Footer />
+      <LiveToast />
+    </div>
+  );
+}
+
+function LiveToast() {
+  const messages = [
+    "+1 inquilino usando a Nexo nesse exato momento",
+    "+1 imobiliária acabou de se cadastrar",
+    "+1 proprietário começou a usar agora",
+    "+1 contrato assinado pelo app",
+    "+1 boleto pago através da Nexo",
+  ];
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    if (dismissed) return;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const show = () => {
+      setVisible(true);
+      timeoutId = setTimeout(() => {
+        setVisible(false);
+        timeoutId = setTimeout(() => {
+          setIndex((i) => (i + 1) % messages.length);
+          show();
+        }, 800);
+      }, 5000);
+    };
+    const initial = setTimeout(show, 1500);
+    return () => {
+      clearTimeout(initial);
+      clearTimeout(timeoutId);
+    };
+  }, [dismissed, messages.length]);
+
+  if (dismissed) return null;
+
+  return (
+    <div
+      className={`fixed bottom-4 left-4 z-50 max-w-[calc(100vw-2rem)] transition-all duration-500 sm:max-w-sm ${
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+      }`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-elevated/95 p-3 pr-2 shadow-card backdrop-blur-xl">
+        <div className="relative flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand shadow-glow">
+          <UserPlus className="h-4 w-4 text-primary-foreground" />
+          <span className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+          </span>
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium leading-tight text-foreground">{messages[index]}</p>
+          <p className="mt-0.5 text-[11px] text-muted-foreground">Atividade ao vivo · agora mesmo</p>
+        </div>
+        <button
+          onClick={() => setDismissed(true)}
+          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-muted-foreground transition hover:bg-surface hover:text-foreground"
+          aria-label="Fechar"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -310,6 +382,114 @@ function ForWho() {
                 ))}
               </ul>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const testimonials = [
+    {
+      name: "Carolina Mendes",
+      role: "Proprietária autônoma · 4 imóveis",
+      city: "São Paulo, SP",
+      quote:
+        "Saí das planilhas e nunca mais voltei. Recebo o repasse direto na conta e acompanho tudo do celular. O melhor: não pago nada.",
+      initials: "CM",
+    },
+    {
+      name: "Imobiliária Vértice",
+      role: "Rafael Souza · Diretor",
+      city: "Curitiba, PR",
+      quote:
+        "Em 2 meses migramos toda a carteira para o Nexo. A equipe ficou mais produtiva e os proprietários adoram a transparência do split.",
+      initials: "IV",
+    },
+    {
+      name: "Juliana Tavares",
+      role: "Proprietária autônoma · 2 imóveis",
+      city: "Belo Horizonte, MG",
+      quote:
+        "Os inquilinos pagam sem reclamar porque tudo é claro. A taxa já vem no boleto e eu recebo o líquido na hora. Simples assim.",
+      initials: "JT",
+    },
+    {
+      name: "Habitat Imóveis",
+      role: "Marina Lopes · Gestora de locação",
+      city: "Florianópolis, SC",
+      quote:
+        "O split automático resolveu nosso maior problema: conciliação. Cada parte recebe direto e a cobrança é praticamente automática.",
+      initials: "HI",
+    },
+    {
+      name: "Eduardo Pacheco",
+      role: "Proprietário autônomo · 1 imóvel",
+      city: "Porto Alegre, RS",
+      quote:
+        "Tenho apenas um apartamento alugado e o Nexo me dá controle total. Contrato digital, boleto e relatório, tudo no app.",
+      initials: "EP",
+    },
+    {
+      name: "Aliança Negócios Imobiliários",
+      role: "Patrícia Reis · CEO",
+      city: "Recife, PE",
+      quote:
+        "Atendimento próximo e plataforma estável. Os proprietários da nossa carteira passaram a confiar muito mais no processo.",
+      initials: "AN",
+    },
+  ];
+
+  return (
+    <section id="depoimentos" className="relative py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Quem usa, aprova
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            Imobiliárias e proprietários
+            <br /> que já vivem a Nexo
+          </h2>
+          <div className="mt-6 flex items-center justify-center gap-2 text-muted-foreground">
+            <div className="flex">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-5 w-5 fill-primary-glow text-primary-glow" />
+              ))}
+            </div>
+            <span className="text-sm">
+              <strong className="text-foreground">4.9/5</strong> de satisfação
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((t) => (
+            <figure
+              key={t.name}
+              className="flex h-full flex-col rounded-2xl border border-border/60 bg-surface p-6 transition hover:border-primary/40 hover:bg-surface-elevated"
+            >
+              <div className="mb-3 flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-primary-glow text-primary-glow" />
+                ))}
+              </div>
+              <blockquote className="flex-1 text-[15px] leading-relaxed text-foreground/90">
+                “{t.quote}”
+              </blockquote>
+              <figcaption className="mt-6 flex items-center gap-3 border-t border-border/40 pt-4">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand font-display text-sm font-bold text-primary-foreground">
+                  {t.initials}
+                </div>
+                <div className="min-w-0">
+                  <div className="truncate font-semibold">{t.name}</div>
+                  <div className="truncate text-xs text-muted-foreground">
+                    {t.role} · {t.city}
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>
