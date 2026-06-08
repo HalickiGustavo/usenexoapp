@@ -18,6 +18,8 @@ import {
   Star,
   X,
   UserPlus,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
