@@ -358,27 +358,19 @@ function SocialProof() {
           </div>
         </Carousel>
 
-        <Carousel
-          opts={{ align: "start", loop: true }}
-          plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]}
-          className="mt-12 w-full rounded-2xl border border-border/60 bg-surface-elevated/60 p-6 backdrop-blur-sm lg:p-8"
-        >
-          <CarouselContent className="-ml-4">
-            {benefits.map((b) => (
-              <CarouselItem key={b.title} className="pl-4 basis-4/5 sm:basis-1/2 lg:basis-1/4">
-                <div className="flex h-full items-start gap-3">
-                  <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <b.icon className="h-4 w-4" strokeWidth={3} />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-foreground">{b.title}</div>
-                    <div className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{b.desc}</div>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        <div className="mt-10 grid grid-cols-2 gap-3 rounded-2xl border border-border/60 bg-surface-elevated/60 p-4 backdrop-blur-sm sm:grid-cols-4 lg:p-5">
+          {benefits.map((b) => (
+            <div key={b.title} className="flex items-start gap-2">
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                <b.icon className="h-3 w-3" strokeWidth={3} />
+              </div>
+              <div>
+                <div className="text-xs font-semibold leading-tight text-foreground">{b.title}</div>
+                <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{b.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
