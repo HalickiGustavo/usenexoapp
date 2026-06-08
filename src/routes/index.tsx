@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import logoAsset from "@/assets/nexo-logo.png.asset.json";
 import {
   Building2,
@@ -14,6 +15,9 @@ import {
   Sparkles,
   KeyRound,
   MessageSquare,
+  Star,
+  X,
+  UserPlus,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
