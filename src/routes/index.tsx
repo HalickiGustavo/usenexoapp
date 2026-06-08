@@ -84,10 +84,10 @@ function LiveToast() {
         timeoutId = setTimeout(() => {
           setIndex((i) => (i + 1) % messages.length);
           show();
-        }, 800);
-      }, 5000);
+        }, 18000);
+      }, 6000);
     };
-    const initial = setTimeout(show, 1500);
+    const initial = setTimeout(show, 5000);
     return () => {
       clearTimeout(initial);
       clearTimeout(timeoutId);
