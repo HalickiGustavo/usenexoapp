@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/nexo-logo-v3.png.asset.json";
+import logoAsset from "@/assets/nexo-logo-v4.png.asset.json";
 import {
   Building2,
   Users,
