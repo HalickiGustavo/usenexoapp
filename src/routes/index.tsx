@@ -190,8 +190,8 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute left-1/2 top-32 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
 
-      <div className="relative mx-auto max-w-5xl px-6 pt-24 pb-28 text-center">
-        <h1 className="mx-auto max-w-3xl font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl">
+      <div className="relative mx-auto max-w-5xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
+        <h1 className="mx-auto max-w-3xl font-display text-[34px] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
           A gestão dos seus{" "}
           <span className="text-gradient">aluguéis</span>,
           <br />
@@ -295,13 +295,13 @@ function Features() {
   ];
 
   return (
-    <section id="recursos" className="relative py-28">
+    <section id="recursos" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
             Recursos
           </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">
             Tudo o que você precisa para gerir aluguéis
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
@@ -352,14 +352,14 @@ function ForWho() {
   ];
 
   return (
-    <section id="para-quem" className="relative py-28">
+    <section id="para-quem" className="relative py-20 sm:py-28">
       <div className="absolute inset-0 bg-gradient-hero opacity-50" />
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
             Para quem é
           </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">
             Feito para quem aluga.
             <br /> Grátis para todos.
           </h2>
@@ -444,13 +444,13 @@ function Testimonials() {
   ];
 
   return (
-    <section id="depoimentos" className="relative py-28">
+    <section id="depoimentos" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
             Quem usa, aprova
           </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">
             Imobiliárias e proprietários
             <br /> que já vivem a Nexo
           </h2>
@@ -578,13 +578,13 @@ function Pricing() {
     { label: "Proprietário", desc: "Valor líquido do aluguel" },
   ];
   return (
-    <section id="precos" className="relative py-28">
+    <section id="precos" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
             Modelo de cobrança
           </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">
             Grátis para você.
             <br /> Pago pelo inquilino.
           </h2>
@@ -678,13 +678,13 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="como-funciona" className="py-28">
+    <section id="como-funciona" className="py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
             Como funciona
           </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">
             Começar leva menos de 5 minutos
           </h2>
         </div>
@@ -737,13 +737,13 @@ function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-28">
+    <section id="faq" className="py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
             Dúvidas frequentes
           </span>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">
             Perguntas frequentes
           </h2>
         </div>
@@ -769,11 +769,11 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section id="cta" className="relative overflow-hidden py-28">
+    <section id="cta" className="relative overflow-hidden py-20 sm:py-28">
       <div className="absolute inset-0 bg-gradient-hero" />
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <Smartphone className="mx-auto mb-6 h-12 w-12 text-primary-glow" />
-        <h2 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
+        <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight md:text-6xl">
           Sua gestão de aluguéis,
           <br />
           <span className="text-gradient">simples como deveria ser.</span>
