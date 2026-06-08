@@ -569,7 +569,7 @@ function TestimonialsCarousel({
     </div>
   );
 }
-}
+
 
 function Pricing() {
   const parts = [
