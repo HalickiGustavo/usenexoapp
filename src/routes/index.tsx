@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/nexo-logo.png.asset.json";
+import logoAsset from "@/assets/nexo-logo-v2.png.asset.json";
 import {
   Building2,
   Users,
@@ -205,9 +205,8 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-3">
-          <span className="font-display text-xl font-bold tracking-tight">
-            NE<span className="text-primary-glow">X</span>O
-          </span>
+          <Logo size={40} />
+          <span className="sr-only">Nexo</span>
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#recursos" className="transition hover:text-foreground">Recursos</a>
