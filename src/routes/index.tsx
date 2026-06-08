@@ -252,7 +252,9 @@ function Hero() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#cta"
+            href="https://nexos-inquilinos.lovable.app/cadastro"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition hover:opacity-90 text-slate-50 bg-[#7C51FE]"
           >
             Começar agora — é grátis
