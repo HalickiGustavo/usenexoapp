@@ -219,7 +219,9 @@ function Header() {
           <a href="#faq" className="transition hover:text-foreground">FAQ</a>
         </nav>
         <a
-          href="#cta"
+          href="https://nexos-inquilinos.lovable.app/cadastro"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
         >
           Baixar grátis
