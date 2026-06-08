@@ -266,20 +266,96 @@ function Hero() {
 
 function SocialProof() {
   const stats = [
-    { value: "R$ 0", label: "de mensalidade" },
-    { value: "100%", label: "gestão pelo app" },
-    { value: "24/7", label: "acesso de qualquer lugar" },
-    { value: "1 app", label: "para tudo" },
+    {
+      icon: Wallet,
+      value: "R$ 0",
+      label: "de mensalidade",
+      desc: "Sem taxa fixa, sem fidelidade. Você só paga se receber.",
+    },
+    {
+      icon: Smartphone,
+      value: "100%",
+      label: "gestão pelo app",
+      desc: "Cobrança, repasse, contratos e inquilinos no seu bolso.",
+    },
+    {
+      icon: ShieldCheck,
+      value: "24/7",
+      label: "acesso de qualquer lugar",
+      desc: "Dados protegidos e disponíveis quando você precisar.",
+    },
+    {
+      icon: Sparkles,
+      value: "1 app",
+      label: "para tudo",
+      desc: "Substitui planilhas, grupos de WhatsApp e sistemas antigos.",
+    },
   ];
+
+  const benefits = [
+    { icon: Check, title: "Reduz inadimplência", desc: "Lembretes automáticos por WhatsApp, e-mail e push." },
+    { icon: Check, title: "Economiza horas por semana", desc: "Boletos, recibos e repasses gerados sozinhos." },
+    { icon: Check, title: "Zero papelada", desc: "Contratos digitais com assinatura eletrônica válida." },
+    { icon: Check, title: "Decisões com dados", desc: "Veja receita, ocupação e atrasos em tempo real." },
+  ];
+
   return (
-    <section className="border-y border-border/40 bg-surface/40">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.label} className="text-center">
-            <div className="font-display text-3xl font-bold text-foreground md:text-4xl">{s.value}</div>
-            <div className="mt-1 text-sm text-muted-foreground">{s.label}</div>
-          </div>
-        ))}
+    <section className="relative overflow-hidden border-y border-border/40 bg-surface/40">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="mb-12 text-center animate-fade-in">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            Por que escolher a Nexo
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-bold text-foreground md:text-4xl">
+            Tudo que você precisa para alugar sem dor de cabeça
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-muted-foreground">
+            Feito para proprietários autônomos e imobiliárias que querem profissionalizar
+            a gestão sem gastar mais por isso.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-surface-elevated/80 p-6 shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-glow animate-fade-in"
+              style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
+            >
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative">
+                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <div className="font-display text-3xl font-bold text-foreground md:text-4xl">
+                  {s.value}
+                </div>
+                <div className="mt-1 text-sm font-semibold text-foreground">{s.label}</div>
+                <div className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-4 rounded-2xl border border-border/60 bg-surface-elevated/60 p-6 backdrop-blur-sm sm:grid-cols-2 lg:grid-cols-4 lg:p-8">
+          {benefits.map((b, i) => (
+            <div
+              key={b.title}
+              className="flex items-start gap-3 animate-fade-in"
+              style={{ animationDelay: `${400 + i * 80}ms`, animationFillMode: "backwards" }}
+            >
+              <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                <b.icon className="h-4 w-4" strokeWidth={3} />
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-foreground">{b.title}</div>
+                <div className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{b.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
