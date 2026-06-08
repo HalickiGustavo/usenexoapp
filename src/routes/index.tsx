@@ -233,7 +233,7 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute left-1/2 top-32 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
 
-      <div className="relative mx-auto max-w-5xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
+      <div className="relative mx-auto max-w-5xl px-6 pt-6 pb-20 sm:pt-10 sm:pb-28 text-center">
         <h1 className="mx-auto max-w-3xl font-display text-[34px] font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
           A gestão dos seus{" "}
           <span className="text-gradient">aluguéis</span>,
