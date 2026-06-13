@@ -947,15 +947,12 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border/40 bg-surface/40">
+    <footer className="border-t border-muted bg-primary-foreground text-background">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 md:flex-row">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center">
           <Logo size={32} />
-          <span className="font-display font-bold">
-            NE<span className="text-primary-glow">X</span>O
-          </span>
         </div>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-background/70">
           © {new Date().getFullYear()} Nexo. Gestão de imóveis alugados.
         </p>
       </div>
