@@ -315,6 +315,7 @@ function SocialProof() {
     { icon: Check, title: "Economiza horas por semana", desc: "Boletos, recibos e repasses gerados sozinhos." },
     { icon: Check, title: "Zero papelada", desc: "Contratos digitais com assinatura eletrônica válida." },
     { icon: Check, title: "Decisões com dados", desc: "Veja receita, ocupação e atrasos em tempo real." },
+    { icon: Check, title: "Anuncie e integre em 1 clique", desc: "Publique seu imóvel na Nexo e envie automaticamente para ImovelWeb, Zap Imóveis e Viva Real." },
   ];
 
   return (
