@@ -75,7 +75,7 @@ function LandingPage() {
 }
 
 function WhatsAppFloat() {
-  const phone = "5541998766169";
+  const phone = "5541999326209";
   const message = encodeURIComponent(
     "Olá! Vim pelo site da Nexo e gostaria de tirar algumas dúvidas."
   );
