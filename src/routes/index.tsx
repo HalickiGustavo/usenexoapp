@@ -480,7 +480,7 @@ function Features() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {features.map((f) => (
             <div
               key={f.title}
