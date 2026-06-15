@@ -776,7 +776,8 @@ function Pricing() {
             <h3 className="mt-2 font-display text-3xl font-semibold">R$ 24,90 <span className="text-base font-normal text-muted-foreground">/ inquilino</span></h3>
             <p className="mt-3 text-muted-foreground">
               Uma taxa única e transparente, cobrada do inquilino dentro do próprio boleto.
-              Sem mensalidade, sem setup, sem surpresas para você.
+              Sem mensalidade, sem setup, sem surpresas para você. Nossa equipe Nexo entra em
+              contato com o inquilino para apresentar o app e orientar sobre o uso.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -784,7 +785,9 @@ function Pricing() {
                 "Imobiliária não paga nada",
                 "Taxa já embutida no boleto do aluguel",
                 "Sem cobranças escondidas",
+                "Contato direto da Nexo com o inquilino para apresentação do app",
               ].map((b) => (
+
                 <li key={b} className="flex items-start gap-3 text-muted-foreground">
                   <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-glow" />
                   <span>{b}</span>
