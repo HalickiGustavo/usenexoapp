@@ -21,6 +21,7 @@ import {
   UserPlus,
   ChevronLeft,
   ChevronRight,
+  Megaphone,
 } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import {
