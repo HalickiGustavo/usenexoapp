@@ -447,7 +447,40 @@ function Features() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 group relative overflow-hidden rounded-3xl border border-primary/40 bg-gradient-to-br from-primary/15 via-surface-elevated to-surface p-8 shadow-glow md:p-12">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-primary-glow/20 blur-3xl" />
+          <div className="relative grid items-center gap-8 md:grid-cols-[auto,1fr,auto]">
+            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-brand shadow-glow md:h-20 md:w-20">
+              <Megaphone className="h-8 w-8 text-primary-foreground md:h-10 md:w-10" />
+            </div>
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                <Sparkles className="h-3 w-3" />
+                Destaque
+              </span>
+              <h3 className="mt-3 font-display text-2xl font-bold text-foreground md:text-3xl">
+                Anuncie e integre em 1 clique
+              </h3>
+              <p className="mt-2 text-base text-muted-foreground md:text-lg">
+                Publique seu imóvel na Nexo e envie automaticamente para as maiores plataformas de locação do Brasil.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                {["ImovelWeb", "Zap Imóveis", "Viva Real"].map((p) => (
+                  <span
+                    key={p}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface-elevated px-3 py-1.5 text-xs font-semibold text-foreground"
+                  >
+                    <Check className="h-3 w-3 text-primary" strokeWidth={3} />
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
             <div
               key={f.title}
