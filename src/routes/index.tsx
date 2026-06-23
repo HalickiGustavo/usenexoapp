@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import logoAsset from "@/assets/nexo-logo-cropped.png.asset.json";
 import founderPhoto from "@/assets/founder-cutout.png.asset.json";
@@ -277,7 +277,19 @@ function Hero() {
           </a>
         </div>
 
+        <div className="mt-6 flex justify-center">
+          <Link
+            to="/diagnostico"
+            className="group inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-semibold text-foreground shadow-glow transition hover:bg-primary/20"
+          >
+            <Sparkles className="h-4 w-4 text-primary" />
+            Faça o diagnóstico da sua imobiliária aqui!
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+
         <div className="mt-8" />
+
       </div>
     </section>
   );
