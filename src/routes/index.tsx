@@ -221,7 +221,7 @@ function Header() {
           <a href="#faq" className="transition hover:text-foreground">FAQ</a>
         </nav>
         <a
-          href="https://nexos-inquilinos.lovable.app/cadastro"
+          href="https://dashboard.usenexoapp.com/cadastro"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
@@ -261,7 +261,7 @@ function Hero() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="https://nexos-inquilinos.lovable.app/cadastro"
+            href="https://dashboard.usenexoapp.com/cadastro"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition hover:opacity-90 text-slate-50 bg-[#7C51FE]"
@@ -970,7 +970,7 @@ function FinalCTA() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://nexos-inquilinos.lovable.app/cadastro"
+            href="https://dashboard.usenexoapp.com/cadastro"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
@@ -978,7 +978,7 @@ function FinalCTA() {
             Baixar para Android
           </a>
           <a
-            href="https://nexos-inquilinos.lovable.app/cadastro"
+            href="https://dashboard.usenexoapp.com/cadastro"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-8 py-4 text-base font-semibold text-foreground transition hover:bg-surface-elevated"
