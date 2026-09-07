@@ -634,11 +634,12 @@ function getMaturityLevel(score: number) {
 }
 
 function ResultStep({
-  lead, moduleScores, overall,
+  lead, moduleScores, overall, answers,
 }: {
   lead: LeadInfo;
   moduleScores: { id: string; name: string; score: number }[];
   overall: number;
+  answers: Record<string, number>;
 }) {
   const level = getMaturityLevel(overall);
   const lowest = [...moduleScores].sort((a, b) => a.score - b.score).slice(0, 5);
@@ -646,6 +647,31 @@ function ResultStep({
   // Hours wasted estimate: linear from 200h @ score 0 to 10h @ score 100
   const hoursWasted = Math.max(10, Math.round(200 - (overall * 190) / 100));
   const ftePct = Math.round((hoursWasted / 176) * 100);
+
+  const salvarLead = useServerFn(salvarDiagnosticoLead);
+  const savedRef = useRef(false);
+  useEffect(() => {
+    if (savedRef.current) return;
+    savedRef.current = true;
+    salvarLead({
+      data: {
+        nome: lead.nome,
+        empresa: lead.empresa,
+        email: lead.email,
+        whatsapp: lead.whatsapp,
+        imoveis: lead.imoveis,
+        colaboradores: lead.colaboradores,
+        cidade: lead.cidade,
+        estado: lead.estado,
+        pontuacao: overall,
+        nivel: level.label,
+        horasDesperdicadas: hoursWasted,
+        moduleScores,
+        respostas: answers,
+      },
+    }).catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const radarData = moduleScores.map((m) => ({ subject: m.name, value: m.score, fullMark: 100 }));
 
