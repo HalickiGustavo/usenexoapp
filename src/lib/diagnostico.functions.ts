@@ -73,12 +73,18 @@ export function montarObservacaoCloser(d: DiagnosticoPayload) {
 export const salvarDiagnosticoLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => payloadSchema.parse(data))
   .handler(async ({ data }) => {
-    const url = process.env["EXTERNAL_SUPABASE_URL"];
+    const rawUrl = process.env["EXTERNAL_SUPABASE_URL"];
     const key = process.env["EXTERNAL_SUPABASE_SERVICE_ROLE_KEY"];
-    if (!url || !key) {
+    if (!rawUrl || !key) {
       console.error("[diagnostico] credenciais do banco externo ausentes");
       return { ok: false as const, error: "Não foi possível salvar o diagnóstico agora." };
     }
+    const url = rawUrl
+      .trim()
+      .replace(/^db\./, "")
+      .replace(/^(?!https?:\/\/)/, "https://")
+      .replace(/\/$/, "");
+
 
     const observacao = montarObservacaoCloser(data);
     const modulos = Object.fromEntries(data.moduleScores.map((m) => [m.id, m.score]));
