@@ -333,6 +333,7 @@ function DiagnosticoPage() {
             lead={lead}
             moduleScores={moduleScores}
             overall={overall}
+            answers={answers}
           />
         )}
       </main>
