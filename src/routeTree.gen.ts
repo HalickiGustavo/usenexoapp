@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicDbCheckRouteImport } from './routes/api/public/db-check'
 
 const DiagnosticoRoute = DiagnosticoRouteImport.update({
   id: '/diagnostico',
@@ -22,31 +23,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicDbCheckRoute = ApiPublicDbCheckRouteImport.update({
+  id: '/api/public/db-check',
+  path: '/api/public/db-check',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/diagnostico': typeof DiagnosticoRoute
+  '/api/public/db-check': typeof ApiPublicDbCheckRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/diagnostico': typeof DiagnosticoRoute
+  '/api/public/db-check': typeof ApiPublicDbCheckRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/diagnostico': typeof DiagnosticoRoute
+  '/api/public/db-check': typeof ApiPublicDbCheckRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/diagnostico'
+  fullPaths: '/' | '/diagnostico' | '/api/public/db-check'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/diagnostico'
-  id: '__root__' | '/' | '/diagnostico'
+  to: '/' | '/diagnostico' | '/api/public/db-check'
+  id: '__root__' | '/' | '/diagnostico' | '/api/public/db-check'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
+  ApiPublicDbCheckRoute: typeof ApiPublicDbCheckRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/db-check': {
+      id: '/api/public/db-check'
+      path: '/api/public/db-check'
+      fullPath: '/api/public/db-check'
+      preLoaderRoute: typeof ApiPublicDbCheckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiagnosticoRoute: DiagnosticoRoute,
+  ApiPublicDbCheckRoute: ApiPublicDbCheckRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
