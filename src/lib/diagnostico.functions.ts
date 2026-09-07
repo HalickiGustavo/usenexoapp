@@ -73,42 +73,59 @@ export function montarObservacaoCloser(d: DiagnosticoPayload) {
 export const salvarDiagnosticoLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => payloadSchema.parse(data))
   .handler(async ({ data }) => {
-    const { withExternalDb, ensureDiagnosticoSchema } = await import("./external-db.server");
+    const rawUrl = process.env["EXTERNAL_SUPABASE_URL"];
+    const key = process.env["EXTERNAL_SUPABASE_SERVICE_ROLE_KEY"];
+    if (!rawUrl || !key) {
+      console.error("[diagnostico] credenciais do banco externo ausentes");
+      return { ok: false as const, error: "Não foi possível salvar o diagnóstico agora." };
+    }
+    const url = rawUrl
+      .trim()
+      .replace(/^db\./, "")
+      .replace(/^(?!https?:\/\/)/, "https://")
+      .replace(/\/$/, "");
+
+
     const observacao = montarObservacaoCloser(data);
     const modulos = Object.fromEntries(data.moduleScores.map((m) => [m.id, m.score]));
 
+    const row = {
+      nome_completo: data.nome,
+      empresa: data.empresa || null,
+      email: data.email,
+      whatsapp: data.whatsapp,
+      imoveis_administrados: data.imoveis || null,
+      colaboradores: data.colaboradores ? Number(data.colaboradores) || null : null,
+      cidade: data.cidade || null,
+      estado: data.estado ? data.estado.toUpperCase().slice(0, 2) : null,
+      pontuacao_final: data.pontuacao,
+      nivel_maturidade: data.nivel,
+      pontuacoes_modulos: modulos,
+      respostas: data.respostas,
+      horas_desperdicadas: data.horasDesperdicadas,
+      observacao_closer: observacao,
+    };
+
     try {
-      const id = await withExternalDb(async (client) => {
-        await ensureDiagnosticoSchema(client);
-        const res = await client.query<{ id: string }>(
-          `insert into public.diagnostico_leads
-            (nome_completo, empresa, email, whatsapp, imoveis_administrados, colaboradores,
-             cidade, estado, pontuacao_final, nivel_maturidade, pontuacoes_modulos,
-             respostas, horas_desperdicadas, observacao_closer)
-           values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11::jsonb,$12::jsonb,$13,$14)
-           returning id`,
-          [
-            data.nome,
-            data.empresa || null,
-            data.email,
-            data.whatsapp,
-            data.imoveis || null,
-            data.colaboradores ? Number(data.colaboradores) || null : null,
-            data.cidade || null,
-            data.estado ? data.estado.toUpperCase().slice(0, 2) : null,
-            data.pontuacao,
-            data.nivel,
-            JSON.stringify(modulos),
-            JSON.stringify(data.respostas),
-            data.horasDesperdicadas,
-            observacao,
-          ],
-        );
-        return res.rows[0]?.id ?? null;
+      const res = await fetch(`${url.replace(/\/$/, "")}/rest/v1/diagnostico_leads`, {
+        method: "POST",
+        headers: {
+          apikey: key,
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(row),
       });
-      return { ok: true as const, id };
+      if (!res.ok) {
+        console.error("[diagnostico] erro REST ao salvar lead:", res.status, await res.text());
+        return { ok: false as const, error: "Não foi possível salvar o diagnóstico agora." };
+      }
+      const rows = (await res.json()) as { id?: string }[];
+      return { ok: true as const, id: rows?.[0]?.id ?? null };
     } catch (err) {
       console.error("[diagnostico] falha ao salvar lead:", err);
       return { ok: false as const, error: "Não foi possível salvar o diagnóstico agora." };
     }
   });
+
