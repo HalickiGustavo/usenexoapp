@@ -469,7 +469,9 @@ function LeadStep({
   lead, setLead, onNext,
 }: { lead: LeadInfo; setLead: (l: LeadInfo) => void; onNext: () => void }) {
   const required: (keyof LeadInfo)[] = ["nome", "empresa", "email", "whatsapp", "imoveis", "colaboradores", "cidade", "estado"];
-  const isValid = required.every((k) => lead[k].trim() !== "");
+  const whatsappDigits = lead.whatsapp.replace(/\D/g, "");
+  const whatsappIsValid = /^\d{10,11}$/.test(whatsappDigits);
+  const isValid = required.every((k) => lead[k].trim() !== "") && whatsappIsValid;
 
   const update = (k: keyof LeadInfo, v: string) => setLead({ ...lead, [k]: v });
 
@@ -481,7 +483,15 @@ function LeadStep({
         <Field label="Nome completo" value={lead.nome} onChange={(v) => update("nome", v)} />
         <Field label="Empresa" value={lead.empresa} onChange={(v) => update("empresa", v)} />
         <Field label="E-mail" type="email" value={lead.email} onChange={(v) => update("email", v)} />
-        <Field label="WhatsApp" value={lead.whatsapp} onChange={(v) => update("whatsapp", v)} placeholder="(11) 99999-9999" />
+        <Field
+          label="WhatsApp *"
+          type="tel"
+          value={lead.whatsapp}
+          onChange={(v) => update("whatsapp", v)}
+          placeholder="(11) 99999-9999"
+          required
+          error={lead.whatsapp.length > 0 && !whatsappIsValid ? "Informe um WhatsApp válido com DDD." : undefined}
+        />
         <SelectField
           label="Imóveis administrados"
           value={lead.imoveis}
@@ -507,8 +517,8 @@ function LeadStep({
 }
 
 function Field({
-  label, value, onChange, type = "text", placeholder,
-}: { label: string; value: string; onChange: (v: string) => void; type?: string; placeholder?: string }) {
+  label, value, onChange, type = "text", placeholder, required = false, error,
+}: { label: string; value: string; onChange: (v: string) => void; type?: string; placeholder?: string; required?: boolean; error?: string }) {
   return (
     <label className="block">
       <span className="text-xs font-medium text-slate-700">{label}</span>
@@ -516,9 +526,14 @@ function Field({
         type={type}
         value={value}
         placeholder={placeholder}
+        required={required}
+        inputMode={type === "tel" ? "tel" : undefined}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? "whatsapp-error" : undefined}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-violet-500/0 transition focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
+        className={`mt-1.5 w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:ring-2 ${error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-slate-200 ring-violet-500/0 focus:border-violet-500 focus:ring-violet-500/20"}`}
       />
+      {error ? <span id="whatsapp-error" className="mt-1 block text-xs font-medium text-red-600">{error}</span> : null}
     </label>
   );
 }
