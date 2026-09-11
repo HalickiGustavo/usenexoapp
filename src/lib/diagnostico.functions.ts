@@ -11,7 +11,14 @@ const payloadSchema = z.object({
   nome: z.string().min(1).max(200),
   empresa: z.string().max(200).optional().default(""),
   email: z.string().email().max(200),
-  whatsapp: z.string().min(6).max(40),
+  whatsapp: z
+    .string()
+    .trim()
+    .min(1, "WhatsApp é obrigatório")
+    .max(40)
+    .refine((value) => /^\d{10,11}$/.test(value.replace(/\D/g, "")), {
+      message: "Informe um WhatsApp válido com DDD",
+    }),
   imoveis: z.string().max(80).optional().default(""),
   colaboradores: z.string().max(20).optional().default(""),
   cidade: z.string().max(120).optional().default(""),
