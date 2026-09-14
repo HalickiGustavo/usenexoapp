@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { useEffect, useState, type FormEvent } from "react";
 import logoAsset from "@/assets/nexo-logo-cropped.png.asset.json";
 import founderPhoto from "@/assets/founder-cutout.png.asset.json";
+import { Button } from "@/components/ui/button";
+import { saveSiteContact } from "@/lib/contact.functions";
+import { contactSchema } from "@/lib/contact.schema";
 import {
   Building2,
   Users,
@@ -22,6 +26,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Megaphone,
+  Mail,
+  Phone,
+  Send,
 } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -47,6 +54,8 @@ export const Route = createFileRoute("/")({
         content:
           "Toda a gestão dos seus aluguéis feita pelo app. Grátis para imobiliárias e proprietários.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: LandingPage,
@@ -65,6 +74,7 @@ function LandingPage() {
         <Testimonials />
         <Pricing />
         <HowItWorks />
+        <ContactSection />
         <FAQ />
         <FinalCTA />
       </main>
@@ -218,6 +228,7 @@ function Header() {
           <a href="#para-quem" className="transition hover:text-foreground">Para quem é</a>
           <a href="#precos" className="transition hover:text-foreground">Preços</a>
           <a href="#como-funciona" className="transition hover:text-foreground">Como funciona</a>
+          <a href="#contato" className="transition hover:text-foreground">Contato</a>
           <a href="#faq" className="transition hover:text-foreground">FAQ</a>
         </nav>
         <a
@@ -888,6 +899,171 @@ function HowItWorks() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+type ContactField = "nome" | "email" | "whatsapp";
+
+function ContactSection() {
+  const sendContact = useServerFn(saveSiteContact);
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<ContactField, string>>>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form).entries());
+    const parsed = contactSchema.safeParse(values);
+
+    if (!parsed.success) {
+      const errors: Partial<Record<ContactField, string>> = {};
+      for (const issue of parsed.error.issues) {
+        const field = issue.path[0];
+        if ((field === "nome" || field === "email" || field === "whatsapp") && !errors[field]) {
+          errors[field] = issue.message;
+        }
+      }
+      setFieldErrors(errors);
+      setStatus("error");
+      setSubmitError("Confira os campos destacados.");
+      return;
+    }
+
+    setFieldErrors({});
+    setSubmitError("");
+    setStatus("sending");
+
+    try {
+      const result = await sendContact({ data: parsed.data });
+      if (!result.ok) {
+        setStatus("error");
+        setSubmitError(result.error);
+        return;
+      }
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+      setSubmitError("Não foi possível enviar agora. Tente novamente em instantes.");
+    }
+  };
+
+  const inputClass =
+    "mt-2 h-12 w-full rounded-lg border border-border bg-background px-4 text-base text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20";
+
+  return (
+    <section id="contato" className="border-y border-border/40 bg-surface/40 py-20 sm:py-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[0.9fr,1.1fr]">
+        <div>
+          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+            Fale com a Nexo
+          </span>
+          <h2 className="mt-3 max-w-xl font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+            Quer simplificar a gestão dos seus aluguéis?
+          </h2>
+          <p className="mt-5 max-w-lg text-lg text-muted-foreground">
+            Deixe seus dados e nossa equipe entrará em contato para entender sua operação e mostrar como a Nexo pode ajudar.
+          </p>
+          <div className="mt-8 space-y-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary-glow">
+                <Phone className="h-5 w-5" />
+              </span>
+              Atendimento próximo para proprietários e imobiliárias
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary-glow">
+                <Mail className="h-5 w-5" />
+              </span>
+              Retorno pelos dados informados por você
+            </div>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-border/60 bg-surface p-6 shadow-card sm:p-8">
+          <div className="grid gap-5">
+            <div>
+              <label htmlFor="contact-name" className="text-sm font-semibold text-foreground">Nome completo</label>
+              <input
+                id="contact-name"
+                name="nome"
+                type="text"
+                autoComplete="name"
+                maxLength={100}
+                required
+                aria-invalid={Boolean(fieldErrors.nome)}
+                aria-describedby={fieldErrors.nome ? "contact-name-error" : undefined}
+                className={inputClass}
+                placeholder="Como podemos chamar você?"
+              />
+              {fieldErrors.nome && <p id="contact-name-error" className="mt-1.5 text-sm text-destructive">{fieldErrors.nome}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="contact-email" className="text-sm font-semibold text-foreground">E-mail</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                maxLength={255}
+                required
+                aria-invalid={Boolean(fieldErrors.email)}
+                aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
+                className={inputClass}
+                placeholder="voce@empresa.com.br"
+              />
+              {fieldErrors.email && <p id="contact-email-error" className="mt-1.5 text-sm text-destructive">{fieldErrors.email}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="contact-whatsapp" className="text-sm font-semibold text-foreground">WhatsApp com DDD</label>
+              <input
+                id="contact-whatsapp"
+                name="whatsapp"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                maxLength={20}
+                required
+                aria-invalid={Boolean(fieldErrors.whatsapp)}
+                aria-describedby={fieldErrors.whatsapp ? "contact-whatsapp-error" : undefined}
+                className={inputClass}
+                placeholder="(41) 99999-9999"
+              />
+              {fieldErrors.whatsapp && <p id="contact-whatsapp-error" className="mt-1.5 text-sm text-destructive">{fieldErrors.whatsapp}</p>}
+            </div>
+
+            <div className="absolute -left-[10000px]" aria-hidden="true">
+              <label htmlFor="contact-website">Site</label>
+              <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              disabled={status === "sending"}
+              className="mt-1 h-12 w-full rounded-lg bg-gradient-brand text-base font-semibold text-primary-foreground shadow-glow hover:brightness-110"
+            >
+              {status === "sending" ? "Enviando..." : "Quero falar com a Nexo"}
+              {status !== "sending" && <Send className="h-4 w-4" />}
+            </Button>
+
+            <div aria-live="polite" className="min-h-6 text-center text-sm">
+              {status === "success" && (
+                <p className="font-medium text-emerald-400">Recebemos seus dados! Nossa equipe entrará em contato.</p>
+              )}
+              {status === "error" && submitError && <p className="text-destructive">{submitError}</p>}
+            </div>
+            <p className="text-center text-xs text-muted-foreground">
+              Seus dados serão usados somente para este atendimento.
+            </p>
+          </div>
+        </form>
       </div>
     </section>
   );
