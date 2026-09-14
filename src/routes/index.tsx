@@ -235,7 +235,7 @@ function Header() {
           href="https://dashboard.usenexoapp.com/cadastro"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+          className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition hover:bg-primary-glow hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Baixar grátis
           <ArrowRight className="h-4 w-4" />
@@ -275,27 +275,27 @@ function Hero() {
             href="https://dashboard.usenexoapp.com/cadastro"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition hover:opacity-90 text-slate-50 bg-[#7C51FE]"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition hover:bg-primary-glow hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Começar agora — é grátis
             <ArrowRight className="h-4 w-4" />
           </a>
           <a
             href="#como-funciona"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-foreground transition hover:bg-surface"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/30 bg-surface-elevated px-7 py-3.5 text-sm font-bold text-foreground shadow-md transition hover:border-primary/70 hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Ver como funciona
           </a>
         </div>
 
-        <div className="mt-6 flex justify-center">
+        <div className="mt-7 flex justify-center">
           <Link
             to="/diagnostico"
-            className="group inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-semibold text-foreground shadow-glow transition hover:bg-primary/20"
+            className="group inline-flex w-full max-w-xl items-center justify-center gap-3 rounded-full border-2 border-primary-glow bg-gradient-brand px-6 py-4 text-center text-base font-bold text-primary-foreground shadow-xl shadow-primary/40 transition hover:scale-[1.02] hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background sm:w-auto sm:px-9"
           >
-            <Sparkles className="h-4 w-4 text-primary" />
-            Faça o diagnóstico da sua imobiliária aqui!
-            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+            <Sparkles className="h-5 w-5" />
+            Faça o diagnóstico grátis da sua imobiliária
+            <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -1140,7 +1140,7 @@ function FinalCTA() {
             href="https://dashboard.usenexoapp.com/cadastro"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:brightness-110"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-lg shadow-primary/30 transition hover:bg-primary-glow hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Baixar para Android
           </a>
@@ -1148,7 +1148,7 @@ function FinalCTA() {
             href="https://dashboard.usenexoapp.com/cadastro"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-8 py-4 text-base font-semibold text-foreground transition hover:bg-surface-elevated"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/30 bg-surface-elevated px-8 py-4 text-base font-bold text-foreground shadow-md transition hover:border-primary/70 hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Baixar para iOS
           </a>
