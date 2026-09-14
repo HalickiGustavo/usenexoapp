@@ -6,6 +6,7 @@ import founderPhoto from "@/assets/founder-cutout.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { saveSiteContact } from "@/lib/contact.functions";
 import { contactSchema } from "@/lib/contact.schema";
+import { trackGoogleAdsLeadConversion } from "@/lib/google-ads";
 import {
   Building2,
   Users,
@@ -944,6 +945,7 @@ function ContactSection() {
       }
       form.reset();
       setStatus("success");
+      trackGoogleAdsLeadConversion();
     } catch {
       setStatus("error");
       setSubmitError("Não foi possível enviar agora. Tente novamente em instantes.");
@@ -1169,6 +1171,18 @@ function Footer() {
         <p className="text-sm text-background/70">
           © {new Date().getFullYear()} Nexo. Gestão de imóveis alugados.
         </p>
+        <div className="flex items-center gap-4 text-xs text-background/70">
+          <Link to="/privacidade" className="hover:text-background">Privacidade</Link>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="h-auto p-0 text-xs text-background/70 hover:bg-transparent hover:text-background"
+            onClick={() => window.dispatchEvent(new Event("nexo:cookie-settings"))}
+          >
+            Cookies
+          </Button>
+        </div>
       </div>
     </footer>
   );
