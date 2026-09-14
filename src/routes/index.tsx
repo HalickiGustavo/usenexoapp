@@ -26,7 +26,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Megaphone,
-  Mail,
   Phone,
   Send,
 } from "lucide-react";
@@ -952,39 +951,29 @@ function ContactSection() {
   };
 
   const inputClass =
-    "mt-2 h-12 w-full rounded-lg border border-border bg-background px-4 text-base text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20";
+    "mt-2 h-12 w-full rounded-lg border border-border/60 bg-background/70 px-4 text-base text-foreground outline-none transition placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/15";
 
   return (
-    <section id="contato" className="border-y border-border/40 bg-surface/40 py-20 sm:py-24">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[0.9fr,1.1fr]">
+    <section id="contato" className="border-y border-border/30 bg-background py-16 sm:py-20">
+      <div className="mx-auto grid max-w-5xl items-start gap-10 px-6 lg:grid-cols-[0.85fr,1.15fr] lg:gap-16">
         <div>
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary-glow">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary-glow">
             Fale com a Nexo
           </span>
-          <h2 className="mt-3 max-w-xl font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 max-w-xl font-display text-3xl font-bold leading-tight sm:text-4xl">
             Quer simplificar a gestão dos seus aluguéis?
           </h2>
-          <p className="mt-5 max-w-lg text-lg text-muted-foreground">
+          <p className="mt-4 max-w-lg leading-relaxed text-muted-foreground">
             Deixe seus dados e nossa equipe entrará em contato para entender sua operação e mostrar como a Nexo pode ajudar.
           </p>
-          <div className="mt-8 space-y-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary-glow">
-                <Phone className="h-5 w-5" />
-              </span>
-              Atendimento próximo para proprietários e imobiliárias
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary-glow">
-                <Mail className="h-5 w-5" />
-              </span>
-              Retorno pelos dados informados por você
-            </div>
+          <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
+            <Phone className="h-4 w-4 text-primary-glow" />
+            Atendimento para proprietários e imobiliárias
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-border/60 bg-surface p-6 shadow-card sm:p-8">
-          <div className="grid gap-5">
+        <form onSubmit={handleSubmit} noValidate className="border-t border-border/60 pt-7 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+          <div className="grid gap-4">
             <div>
               <label htmlFor="contact-name" className="text-sm font-semibold text-foreground">Nome completo</label>
               <input
@@ -1047,19 +1036,19 @@ function ContactSection() {
               type="submit"
               size="lg"
               disabled={status === "sending"}
-              className="mt-1 h-12 w-full rounded-lg bg-gradient-brand text-base font-semibold text-primary-foreground shadow-glow hover:brightness-110"
+              className="mt-2 h-12 w-full rounded-lg bg-primary text-base font-semibold text-primary-foreground shadow-none hover:bg-primary/90"
             >
               {status === "sending" ? "Enviando..." : "Quero falar com a Nexo"}
               {status !== "sending" && <Send className="h-4 w-4" />}
             </Button>
 
-            <div aria-live="polite" className="min-h-6 text-center text-sm">
+            <div aria-live="polite" className="min-h-5 text-center text-sm">
               {status === "success" && (
                 <p className="font-medium text-emerald-400">Recebemos seus dados! Nossa equipe entrará em contato.</p>
               )}
               {status === "error" && submitError && <p className="text-destructive">{submitError}</p>}
             </div>
-            <p className="text-center text-xs text-muted-foreground">
+            <p className="text-center text-xs text-muted-foreground/80">
               Seus dados serão usados somente para este atendimento.
             </p>
           </div>
