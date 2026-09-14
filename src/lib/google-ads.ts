@@ -9,6 +9,7 @@ declare global {
 }
 
 let scriptRequested = false;
+let adsConsentGranted = false;
 
 function ensureGtag() {
   window.dataLayer = window.dataLayer || [];
@@ -20,6 +21,7 @@ function ensureGtag() {
 export function loadGoogleAdsTag() {
   if (typeof window === "undefined") return;
   ensureGtag();
+  adsConsentGranted = true;
   window.gtag("consent", "update", {
     ad_storage: "granted",
     ad_user_data: "granted",
@@ -39,8 +41,19 @@ export function loadGoogleAdsTag() {
   window.gtag("config", GOOGLE_ADS_ID);
 }
 
+export function disableGoogleAdsTracking() {
+  if (typeof window === "undefined") return;
+  adsConsentGranted = false;
+  ensureGtag();
+  window.gtag("consent", "update", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+}
+
 export function trackGoogleAdsLeadConversion() {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (typeof window === "undefined" || !adsConsentGranted || typeof window.gtag !== "function") return;
   window.gtag("event", "conversion", {
     send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
   });

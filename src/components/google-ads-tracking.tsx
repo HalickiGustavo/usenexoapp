@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { loadGoogleAdsTag } from "@/lib/google-ads";
+import { disableGoogleAdsTracking, loadGoogleAdsTag } from "@/lib/google-ads";
 
 const CONSENT_KEY = "nexo_ads_consent_v1";
 const CONSENT_VERSION = "2026-09-14";
@@ -47,7 +47,14 @@ export function GoogleAdsTracking() {
 
   useEffect(() => {
     const openSettings = () => setShowBanner(true);
+    const syncChoice = (event: StorageEvent) => {
+      if (event.key !== CONSENT_KEY) return;
+      const choice = readChoice();
+      if (choice === "accepted") loadGoogleAdsTag();
+      if (choice === "rejected") disableGoogleAdsTracking();
+    };
     window.addEventListener("nexo:cookie-settings", openSettings);
+    window.addEventListener("storage", syncChoice);
 
     const choice = readChoice();
     if (choice === "accepted") {
@@ -59,13 +66,17 @@ export function GoogleAdsTracking() {
       });
     }
 
-    return () => window.removeEventListener("nexo:cookie-settings", openSettings);
+    return () => {
+      window.removeEventListener("nexo:cookie-settings", openSettings);
+      window.removeEventListener("storage", syncChoice);
+    };
   }, []);
 
   const decide = (choice: ConsentChoice) => {
     saveChoice(choice);
     setShowBanner(false);
     if (choice === "accepted") loadGoogleAdsTag();
+    else disableGoogleAdsTracking();
   };
 
   if (!showBanner) return null;
