@@ -26,7 +26,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Megaphone,
-  Mail,
   Phone,
   Send,
 } from "lucide-react";
