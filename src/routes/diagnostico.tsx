@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { salvarDiagnosticoLead } from "@/lib/diagnostico.functions";
-import { trackGoogleAdsLeadConversion } from "@/lib/google-ads";
 import {
   ArrowRight,
   ArrowLeft,
@@ -687,11 +686,7 @@ function ResultStep({
         moduleScores,
         respostas: answers,
       },
-    })
-      .then((result) => {
-        if (result.ok) trackGoogleAdsLeadConversion();
-      })
-      .catch(() => {});
+    }).catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
