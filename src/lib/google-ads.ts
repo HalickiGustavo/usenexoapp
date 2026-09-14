@@ -1,5 +1,6 @@
 export const GOOGLE_ADS_ID = "AW-18436275672";
 export const GOOGLE_ADS_CONVERSION_LABEL = "D8I4CkEX5PccENj7jNdE";
+export const GOOGLE_ADS_DIAGNOSTICO_CONVERSION_LABEL = "22RYCIjv6PccENj7jNdE";
 
 declare global {
   interface Window {
@@ -56,5 +57,12 @@ export function trackGoogleAdsLeadConversion() {
   if (typeof window === "undefined" || !adsConsentGranted || typeof window.gtag !== "function") return;
   window.gtag("event", "conversion", {
     send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
+  });
+}
+
+export function trackGoogleAdsDiagnosticoConversion() {
+  if (typeof window === "undefined" || !adsConsentGranted || typeof window.gtag !== "function") return;
+  window.gtag("event", "conversion", {
+    send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_DIAGNOSTICO_CONVERSION_LABEL}`,
   });
 }
