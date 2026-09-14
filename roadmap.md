@@ -1,5 +1,5 @@
 # Roadmap
 
-- [x] Criar armazenamento privado para contatos do site
-- [x] Adicionar e validar o formulário de contato na página
-- [x] Verificar salvamento e aparência em computador e celular
+- [x] Criar o SQL da tabela de contatos para o banco externo
+- [x] Direcionar o formulário de contato somente ao banco externo
+- [ ] Executar o SQL fornecido no banco externo e validar um envio
